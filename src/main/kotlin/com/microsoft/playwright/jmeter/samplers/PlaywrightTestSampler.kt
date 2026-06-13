@@ -16,18 +16,18 @@ class PlaywrightTestSampler : AbstractSampler() {
     private var proc: Process? = null
     private val log = LoggerFactory.getLogger(ThreadGroup::class.java)
 
-    var testDirectory: File?
-        get() {
-            val prop = getPropertyAsString(TEST_DIRECTORY, "")
-            return if (prop.isNullOrEmpty()) {
-                File(prop)
-            } else null
-        }
-        set(value) {
-            if (value == null) {
-                setProperty(TEST_DIRECTORY, "")
-            } else setProperty(TEST_DIRECTORY, value.toString())
-        }
+var testDirectory: File?
+    get() {
+        val prop = getPropertyAsString(TEST_DIRECTORY, "")
+        return if (prop.isNullOrEmpty()) {
+            null
+        } else File(prop)
+    }
+    set(value) {
+        if (value == null) {
+            setProperty(TEST_DIRECTORY, "")
+        } else setProperty(TEST_DIRECTORY, value.toString())
+    }
 
     var extraOptions: String
         get() = getPropertyAsString(EXTRA_OPTIONS, "")
